@@ -7,9 +7,15 @@ import errorHandler from "./middleware/errorHandler.ts";
 import collectionsRoutes from "./routes/collectionsRoutes.ts";
 import vocabRoutes from "./routes/vocabRoutes.ts";
 
-const PORT = process.env.PORT || 5000;
 dotenv.config();
-connectDB();
+const PORT = process.env.PORT || 5000;
+let isConnected = false;
+
+async function ensureDB() {
+  if (isConnected) return;
+  await connectDB();
+  isConnected = true;
+}
 
 const app = express();
 app.use(cors());
@@ -21,8 +27,10 @@ app.use("/api/vocab", vocabRoutes);
 app.use(errorHandler);
 
 if (process.env.NODE_ENV === "development") {
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  ensureDB().then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
   });
 }
 
