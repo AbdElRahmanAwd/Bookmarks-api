@@ -1,9 +1,9 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import User from "../models/userModel.ts";
-import type { Login, Register, GoogleAuth } from "../types/authTypes.ts";
-import { tokenBlacklist } from "../services/tokenBlacklist.ts";
+import User from "../models/userModel";
+import type { Login, Register, GoogleAuth } from "../types/authTypes";
+import { tokenBlacklist } from "../services/tokenBlacklist";
 
 const register = async (req: express.Request, res: express.Response) => {
   const { username, email, password } = req.body as Register;

@@ -1,6 +1,6 @@
 import serverless from "serverless-http";
-import app from "../src/server.ts";
-import connectDB from "../src/config/connectDB.ts";
+import app from "../src/server";
+import connectDB from "../src/config/connectDB";
 
 let isConnected = false;
 

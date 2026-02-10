@@ -1,6 +1,7 @@
+/// <reference path="../types/express.d.ts" />
 import jwt from "jsonwebtoken";
 import expressAsyncHandler from "express-async-handler";
-import { tokenBlacklist } from "../services/tokenBlacklist.ts";
+import { tokenBlacklist } from "../services/tokenBlacklist";
 
 const validateTokenHandler = expressAsyncHandler(async (req, res, next) => {
   const authHeader = req.headers.authorization || req.headers.Authorization;

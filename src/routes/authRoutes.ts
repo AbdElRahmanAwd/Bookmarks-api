@@ -1,12 +1,7 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
-import validateTokenHandler from "../middleware/validateTokenHandler.ts";
-import {
-  register,
-  login,
-  logout,
-  google,
-} from "../controllers/authController.ts";
+import validateTokenHandler from "../middleware/validateTokenHandler";
+import { register, login, logout, google } from "../controllers/authController";
 
 const authRoutes = express.Router();
 

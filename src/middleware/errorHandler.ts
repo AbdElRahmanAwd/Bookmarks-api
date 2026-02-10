@@ -1,5 +1,5 @@
 import express from "express";
-import errorsConstant from "../constants/errorsConstant.ts";
+import errorsConstant from "../constants/errorsConstant";
 
 const errorHandler = (
   err: Error,

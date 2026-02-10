@@ -1,6 +1,6 @@
 import express from "express";
 import { Types } from "mongoose";
-import Vocab from "../models/vocabModel.ts";
+import Vocab from "../models/vocabModel";
 
 const getVocab = async (req: express.Request, res: express.Response) => {
   const vocab = await Vocab.find({

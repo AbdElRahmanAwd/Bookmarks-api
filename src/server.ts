@@ -1,11 +1,11 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import connectDB from "./config/connectDB.ts";
-import authRoutes from "./routes/authRoutes.ts";
-import errorHandler from "./middleware/errorHandler.ts";
-import collectionsRoutes from "./routes/collectionsRoutes.ts";
-import vocabRoutes from "./routes/vocabRoutes.ts";
+import connectDB from "./config/connectDB";
+import authRoutes from "./routes/authRoutes";
+import errorHandler from "./middleware/errorHandler";
+import collectionsRoutes from "./routes/collectionsRoutes";
+import vocabRoutes from "./routes/vocabRoutes";
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;

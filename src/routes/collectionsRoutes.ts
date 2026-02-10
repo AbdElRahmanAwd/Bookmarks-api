@@ -1,13 +1,13 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
-import validateTokenHandler from "../middleware/validateTokenHandler.ts";
+import validateTokenHandler from "../middleware/validateTokenHandler";
 import {
   getCollections,
   getSingleCollection,
   createCollection,
   updateCollection,
   deleteCollection,
-} from "../controllers/collectionsController.ts";
+} from "../controllers/collectionsController";
 
 const collectionsRoutes = express.Router();
 

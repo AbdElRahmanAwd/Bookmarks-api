@@ -1,6 +1,6 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
-import validateTokenHandler from "../middleware/validateTokenHandler.ts";
+import validateTokenHandler from "../middleware/validateTokenHandler";
 import {
   getVocab,
   getSingleVocab,
@@ -8,7 +8,7 @@ import {
   updateVocab,
   deleteVocab,
   reviewVocab,
-} from "../controllers/vocabController.ts";
+} from "../controllers/vocabController";
 
 const vocabRoutes = express.Router();
 

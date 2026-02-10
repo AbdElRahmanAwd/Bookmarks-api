@@ -1,11 +1,11 @@
 import express from "express";
 import { Types } from "mongoose";
-import Collection from "../models/collectionsModel.ts";
+import Collection from "../models/collectionsModel";
 import type {
   Collection as CollectionType,
   CreateCollection,
   UpdateCollection,
-} from "../types/collectionsTypes.ts";
+} from "../types/collectionsTypes";
 
 const getCollections = async (req: express.Request, res: express.Response) => {
   const collections: CollectionType[] = await Collection.find({
