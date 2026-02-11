@@ -10,7 +10,16 @@ async function ensureDB() {
   isConnected = true;
 }
 
+const serverlessHandler = serverless(app);
+
 export default async function handler(req: any, res: any) {
-  await ensureDB();
-  return serverless(app)(req, res);
+  try {
+    await ensureDB();
+  } catch (error) {
+    return res.status(500).json({
+      message: "Database connection failed",
+    });
+  }
+
+  return serverlessHandler(req, res);
 }
