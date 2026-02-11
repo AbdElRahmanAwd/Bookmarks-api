@@ -29,6 +29,11 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/collection", collectionsRoutes);
 app.use("/api/vocab", vocabRoutes);
+
+// Also mount without /api for serverless environments that strip the /api prefix
+app.use("/auth", authRoutes);
+app.use("/collection", collectionsRoutes);
+app.use("/vocab", vocabRoutes);
 app.use(errorHandler);
 
 if (process.env.NODE_ENV === "development") {
