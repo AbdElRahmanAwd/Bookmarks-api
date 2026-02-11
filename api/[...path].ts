@@ -10,14 +10,32 @@ async function ensureDB() {
   isConnected = true;
 }
 
+function withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      reject(new Error("DB init timeout"));
+    }, timeoutMs);
+
+    promise
+      .then((result) => {
+        clearTimeout(timer);
+        resolve(result);
+      })
+      .catch((error) => {
+        clearTimeout(timer);
+        reject(error);
+      });
+  });
+}
+
 const serverlessHandler = serverless(app);
 
 export default async function handler(req: any, res: any) {
   try {
-    await ensureDB();
+    await withTimeout(ensureDB(), 4000);
   } catch (error) {
-    return res.status(500).json({
-      message: "Database connection failed",
+    return res.status(503).json({
+      message: "Service unavailable: database connection timeout",
     });
   }
 
