@@ -26,22 +26,19 @@ app.get("/", (req, res) => {
   res.json({ message: "API is working!" });
 });
 
-app.use("/api/auth", authRoutes);
-app.use("/api/collection", collectionsRoutes);
-app.use("/api/vocab", vocabRoutes);
-
-// Also mount without /api for serverless environments that strip the /api prefix
+// Mount routes - Vercel will automatically handle the /api prefix
 app.use("/auth", authRoutes);
 app.use("/collection", collectionsRoutes);
 app.use("/vocab", vocabRoutes);
 app.use(errorHandler);
 
-if (process.env.NODE_ENV === "development") {
+export default app;
+
+// Start server only if not in serverless environment (for local development)
+if (require.main === module) {
   ensureDB().then(() => {
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
   });
 }
-
-export default app;
