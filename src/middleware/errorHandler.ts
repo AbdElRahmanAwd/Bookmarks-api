@@ -7,9 +7,12 @@ const errorHandler = (
   res: express.Response,
   next: express.NextFunction,
 ) => {
-  const statusCode = res.statusCode
-    ? res.statusCode
-    : errorsConstant.INTERNAL_SERVER_ERROR;
+  const statusCode =
+    res.statusCode && res.statusCode !== 200
+      ? res.statusCode
+      : errorsConstant.INTERNAL_SERVER_ERROR;
+
+  res.status(statusCode);
 
   switch (statusCode) {
     case errorsConstant.VALIDATION_ERROR:
@@ -41,14 +44,12 @@ const errorHandler = (
       });
       break;
     case errorsConstant.INTERNAL_SERVER_ERROR:
+    default:
       res.json({
         title: "Internal Server Error",
         message: err.message,
         stack: process.env.NODE_ENV === "production" ? null : err.stack,
       });
-      break;
-    default:
-      console.log("No error, all good!");
       break;
   }
 };
