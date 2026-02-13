@@ -5,7 +5,7 @@
       "destination": "/api"
     },
     {
-      "source": "/(auth|collection|vocab)/:path*",
+      "source": "/(auth|collection|vocab|tasks)/:path*",
       "destination": "/api"
     }
   ]

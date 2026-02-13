@@ -6,6 +6,7 @@ import authRoutes from "./routes/authRoutes";
 import errorHandler from "./middleware/errorHandler";
 import collectionsRoutes from "./routes/collectionsRoutes";
 import vocabRoutes from "./routes/vocabRoutes";
+import tasksRoutes from "./routes/tasksRoutes";
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
@@ -22,7 +23,7 @@ app.use(cors());
 app.use(express.json());
 
 // test route
-app.get("/", (req, res) => {
+app.get("/test", (req, res) => {
   res.json({ message: "API is working!" });
 });
 
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
 app.use("/auth", authRoutes);
 app.use("/collection", collectionsRoutes);
 app.use("/vocab", vocabRoutes);
+app.use("/tasks", tasksRoutes);
 app.use(errorHandler);
 
 export default app;
